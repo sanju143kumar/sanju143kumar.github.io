@@ -180,6 +180,34 @@ footer{
     .gallery-item img{
         height:170px;
     }
+    }#photoViewer{
+    display:none;
+    position:fixed;
+    z-index:9999;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+#photoViewer img{
+    max-width:100%;
+    max-height:90vh;
+    object-fit:contain;
+    border-radius:10px;
+}
+
+#photoViewer span{
+    position:absolute;
+    top:15px;
+    right:25px;
+    font-size:40px;
+    color:white;
+    cursor:pointer;
     }
 </style>
 </head>
@@ -223,25 +251,23 @@ footer{
     <h2>🖼️ Shayari Photos</h2>
 
     <div class="gallery">
-
-        <div class="gallery-item">
-            <img src="IMG_20260816_220202_859.webp" alt="Shayari Photo 1">
+<img src="IMG_20260816_220202_859.webp" alt="Shayari Photo 1" onclick="openPhoto(this.src)">
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_20260817_145327_977.webp" alt="Shayari Photo 2">
+            <img src="IMG_20260817_145327_977.webp" alt="Shayari Photo 2" onclick="openPhoto(this.src)">
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_20260823_145642_591.webp" alt="Shayari Photo 3">
+            <img src="IMG_20260823_145642_591.webp" alt="Shayari Photo 3" onclick="openPhoto(this.src)"<
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_20260816_215326_266.webp" alt="Shayari Photo 4">
+            <img src="IMG_20260816_215326_266.webp" alt="Shayari Photo 4" onclick="openPhoto(this.src)"<
         </div>
 
         <div class="gallery-item">
-            <img src="IMG_20260816_214611_131.webp" alt="Shayari Photo 5">
+            <img src="IMG_20260816_214611_131.webp" alt="Shayari Photo 5" onclick=openPhoto(this.src)"<
         </div>
 
     </div>
@@ -261,6 +287,20 @@ footer{
 <footer>
     © 2026 Shayri Ki Duniya | Made with ❤️
 </footer>
+<div id="photoViewer" onclick="closePhoto()">
+    <span>×</span>
+    <img id="fullPhoto" src="" alt="Full Photo">
+</div>
 
+<script>
+function openPhoto(src){
+    document.getElementById("fullPhoto").src = src;
+    document.getElementById("photoViewer").style.display = "flex";
+}
+
+function closePhoto(){
+    document.getElementById("photoViewer").style.display = "none";
+}
+</script>
 </body>
         </html>

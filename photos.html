@@ -1,1 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<title>Shayari Photos</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#0f1020;
+    color:white;
+    font-family:Arial,sans-serif;
+    padding:20px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.gallery{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+}
+
+.gallery img{
+    width:100%;
+    height:250px;
+    object-fit:cover;
+    border-radius:15px;
+    cursor:pointer;
+}
+
+.back{
+    display:block;
+    text-align:center;
+    margin:25px auto;
+    color:white;
+    text-decoration:none;
+    font-size:18px;
+}
+
+#photoViewer{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,.95);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+
+#fullPhoto{
+    max-width:85%;
+    max-height:85%;
+    object-fit:contain;
+}
+
+.closeBtn{
+    position:absolute;
+    top:15px;
+    right:20px;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+.prevBtn,
+.nextBtn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(255,255,255,.2);
+    color:white;
+    border:none;
+    font-size:35px;
+    padding:10px 15px;
+    cursor:pointer;
+    border-radius:10px;
+}
+
+.prevBtn{
+    left:10px;
+}
+
+.nextBtn{
+    right:10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🖼️ Shayari Photos</h1>
+
+<div class="gallery">
+
+<img src="IMG_20260816_220202_859.webp" onclick="openPhoto(this.src)">
+<img src="IMG_20260817_145327_977.webp" onclick="openPhoto(this.src)">
+<img src="IMG_20260823_145642_591.webp" onclick="openPhoto(this.src)">
+<img src="IMG_20260816_215326_266.webp" onclick="openPhoto(this.src)">
+<img src="IMG_20260816_214611_131.webp" onclick="openPhoto(this.src)">
+
+</div>
+
+<a class="back" href="index.html">⬅️ Back</a>
+
+<div id="photoViewer">
+
+<span class="closeBtn" onclick="closePhoto()">×</span>
+
+<button class="prevBtn" onclick="previousPhoto()">❮</button>
+
+<img id="fullPhoto" src="" alt="Full Photo">
+
+<button class="nextBtn" onclick="nextPhoto()">❯</button>
+
+</div>
+
+<script>
+
+let photos=[];
+let currentPhoto=0;
+
+function openPhoto(src){
+
+    photos=Array.from(document.querySelectorAll(".gallery img"))
+        .map(img=>img.src);
+
+    currentPhoto=photos.indexOf(src);
+
+    document.getElementById("fullPhoto").src=photos[currentPhoto];
+
+    document.getElementById("photoViewer").style.display="flex";
+}
+
+function nextPhoto(){
+
+    currentPhoto=(currentPhoto+1)%photos.length;
+
+    document.getElementById("fullPhoto").src=photos[currentPhoto];
+}
+
+function previousPhoto(){
+
+    currentPhoto=(currentPhoto-1+photos.length)%photos.length;
+
+    document.getElementById("fullPhoto").src=photos[currentPhoto];
+}
+
+function closePhoto(){
+
+    document.getElementById("photoViewer").style.display="none";
+}
+
+let startX=0;
+let endX=0;
+
+document.getElementById("photoViewer").addEventListener("touchstart",function(e){
+
+    startX=e.touches[0].clientX;
+
+});
+
+document.getElementById("photoViewer").addEventListener("touchend",function(e){
+
+    endX=e.changedTouches[0].clientX;
+
+    if(startX-endX>50){
+        nextPhoto();
+    }
+
+    if(endX-startX>50){
+        previousPhoto();
+    }
+
+});
+
+</script>
+
+</body>
+  </html>

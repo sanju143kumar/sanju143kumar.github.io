@@ -287,9 +287,14 @@ footer{
 <footer>
     © 2026 Shayri Ki Duniya | Made with ❤️
 </footer>
-<div id="photoViewer" onclick="closePhoto()">
-    <span>×</span>
+<div id="photoViewer">
+    <span class="closeBtn" onclick="closePhoto()">×</span>
+
+    <button class="prevBtn" onclick="previousPhoto()">❮</button>
+
     <img id="fullPhoto" src="" alt="Full Photo">
+
+    <button class="nextBtn" onclick="nextPhoto()">❯</button>
 </div>
 
 <script>

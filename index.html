@@ -256,13 +256,23 @@ footer{
     font-size:40px;
     color:white;
     cursor:pointer;
-    }
+    }.page-section {
+    display: none;
+}
+
+.page-section:target {
+    display: block;
+}
+
+#home {
+    display: block;
+        }
 </style>
 </head>
 
 <body>
 
-<header id="home">
+<header>
     <h1>🌈 Shayri Ki Duniya ❤️</h1>
     <p>Alfaaz jo dil ko chhoo jaayein ✨</p>
 </header>
@@ -276,7 +286,7 @@ footer{
 
 <div class="container">
 
-<section class="card">
+<section class="card page-section" id="home">
     <h2>❤️ Welcome</h2>
     <p>
         Shayri Ki Duniya mein aapka swagat hai.
@@ -285,7 +295,7 @@ footer{
     </p>
 </section>
 
-<section class="card" id="shayari">
+<section class="card page-section" id="shayari">
     <h2>✍️ Aaj Ki Shayari</h2>
 
     <div class="shayari">
@@ -295,7 +305,7 @@ footer{
         Magar kahaniyan bahut reh jaati hain. ❤️"
     </div>
 </section>
-<section class="card" id="photos">
+<section class="card page-section" id="photos">
     <h2>🖼️ Shayari Photos</h2>
 
     <div class="gallery">
@@ -321,7 +331,7 @@ footer{
     </div>
     </section>
 
-<section class="card" id="about">
+<section class="card page-section" id="about">
     <h2>🌟 About</h2>
 
     <p>
